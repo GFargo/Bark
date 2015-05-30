@@ -1,0 +1,21 @@
+// Config for Sass Package
+///////
+{
+    "sourceMap": true,
+    // "includePaths": [
+    // ".meteor/local/bower",
+    // ".meteor/local/bower/node-bourbon/assets/stylesheets",
+    // ".meteor/local/bower/neat/app/assets/stylesheets"
+    // ],
+
+    // Selective file compiling
+    "useIndex" : true,
+    "indexFilePath" : "client/styles/app.scss",
+
+    // Autoprefixer options
+    "enableAutoprefixer": true,
+    "autoprefixerOptions": {
+        "browsers": ["> 5%", "BlackBerry", "OperaMini"],
+        "cascade": false
+    }
+}

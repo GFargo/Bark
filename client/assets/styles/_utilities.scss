@@ -1,0 +1,55 @@
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+
+input {
+  outline: none;
+}
+input[type=text], input[type=email] {
+  padding: 12px;
+  border: 1px solid #ccc;
+}
+
+.btn {
+  background: $brand-succes;
+  color: #fff;
+  text-transform: uppercase;
+  border: none;
+  padding: 10px 20px;
+  letter-spacing: 0.01em;
+  font-weight: 400;
+  text-align: center;
+  min-width: 100px;
+
+  transition: background 300ms ease;
+  &:focus,
+  &:hover {
+    cursor: pointer;
+    background: #40a55c;
+  }
+}
+
+.btn-soft {
+  background: #fff;
+  border: 1px solid #ccc;
+  color: #000;
+  &:hover {
+    background: #fff;
+    box-shadow: 0 2px 0px #ddd;
+  }
+}
+
+.btn-info {
+  background: #09AEF2;
+  &:hover {
+    background: #0899d4;
+  }
+}

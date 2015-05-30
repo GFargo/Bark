@@ -1,0 +1,288 @@
+@import "_variables";
+@import "_utilities";
+
+body {
+  font-family: Helvetica Neue;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100%;
+}
+
+#login-buttons .login-button {
+  background: $brand-succes;
+  color: $brand-white;
+  border: none !important;
+  text-transform: uppercase;
+  padding: 6px 20px !important;
+  letter-spacing: 0.01em !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+  min-width: 100px !important;
+  &:hover {
+    cursor: pointer;
+    background: #40a55c;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.nav {
+  width: 30%;
+  max-width: 350px;
+  min-width: 200px;
+  background: $brand-dgray;
+  color: $brand-white;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.main-header {
+  padding: 5px;
+}
+
+.main-list {
+  flex: 1;
+  overflow-y: scroll;
+  padding: 10px;
+}
+
+.main-login {
+  padding: 20px;
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.main-login-inner {
+}
+
+.main-footer {
+  padding: 20px;
+  border-top: 1px solid $brand-lgray;
+}
+
+.nav header {
+  background: $brand-dgray;
+  padding: 10px;
+   h1 {
+    font-size: 2em;
+    margin: 0;
+    padding: 5px 0px;
+    color: darken($brand-white, 5%);
+  }
+  .user {
+    color: lighten($brand-dgray, 10%);
+    padding: 10px 0px;
+  }
+}
+
+.nav .rooms {
+  padding: 10px;
+  h3 {
+    text-transform: uppercase;
+    color: #f2f2f2;
+    margin: 20px 0px 20px 0px;
+    font-size: 11px;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+      margin: 2px 0;
+      padding: 10px 4px;
+      cursor: pointer;
+      transition: background 300ms ease;
+      &:hover {
+        background: lighten($brand-dgray, 3%);
+      }
+    }
+  }
+  ul li.active:hover,
+  .active {
+    background: lighten($brand-dgray, 8%);
+    border-radius: 4px;
+  }
+  .add-room {
+    float: right;
+    font-size: 14px;
+    cursor: pointer;
+    &:hover {
+      color: $brand-white;
+    }
+  }
+}
+
+.nav .invite {
+  padding: 10px;
+  form {
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+  }
+  h3 {
+    text-transform: uppercase;
+    color: darken($brand-lgray, 10%);
+    margin: 20px 0px 20px 0px;
+    font-size: 11px;
+  }
+  input[type=email] {
+    border: none;
+    width: 100%;
+  }
+  input[type=submit] {
+    min-width: none;
+  }
+  // successful invite message
+  .invite-confirm {
+    color: #4AB969;
+    padding: 10px 0px;
+  }
+}
+
+.comment-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  .comment-item {
+    padding: 5px;
+  }
+}
+.comment-controls {
+  float: right;
+  span {
+    display: block;
+    margin: 8px auto;
+    color: #cecece;
+    &::hover {
+      color: $brand-lgray;
+    }
+  }
+}
+
+.comment-add {
+  display: flex;
+  flex-direction: row;
+  .comment-add-text {
+    flex: 1;
+    margin-right: 5px;
+    width: 100%;
+  }
+}
+
+
+.main-header h1 {
+  margin: 4px 0px;
+  padding: 0px 5px;
+  font-size: 1.8em;
+  color: #bbb;
+}
+
+.comment-item {
+  padding: 12px 5px;
+  img {
+    border-radius: 4px;
+    width: 36px;
+    float: left;
+  }
+  // header
+  .header {
+    margin-left: 36px;
+    padding: 0px 10px;
+    font-size: 12px;
+     .login {
+      font-weight: 700;
+      margin-right: 10px;
+    }
+    .timestamp {
+      color: #777;
+    }
+  }
+  // comment body
+  .comment {
+    margin-left: 36px;
+    padding: 4px 10px;
+    line-height: 1.5em;
+  }
+}
+
+
+.room-add-dialog {
+  z-index: 1000;
+  background: $brand-white;
+  position: absolute;
+  top: 20%;
+  left: 25%;
+  width: 50%;
+  margin: 0 auto;
+  box-shadow: 2px 2px 10px $brand-black;
+  border-radius: 6px;
+  form {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 10px;
+  }
+  header {
+    background: #f2f2f2;
+    padding: 10px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+
+     h1 {
+      margin: 0;
+      padding: 0;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+  }
+  .fields,
+  footer {
+    padding: 10px;
+  }
+  .fields {
+    flex: 1;
+  }
+  input[type=text] {
+    width: 100%;
+  }
+  label { width: 20%; }
+  footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    .btn {
+      margin: 0 5px;
+    }
+    input[type=submit] {
+      float: right;
+    }
+  }
+}
+
+
+.mask {
+  position: absolute;
+  z-index: 500;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: $brand-black;
+  opacity: .5;
+}
