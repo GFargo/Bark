@@ -6,7 +6,14 @@ Meteor.publish('comments', function () {
 });
 
 Meteor.publish('users', function () {
-  return Meteor.users.find({}, {fields: {profile: 1}});
+  // return Meteor.users.find({}, {fields: {profile: 1}});
+  if (this.userId) {
+    return Meteor.users.find({_id: 'GpL3Mr2Ak4bYepmnN'},
+                             {fields: {'admin': true}}
+                            );
+  } else {
+    this.ready();
+  }
 });
 
 Meteor.publish('rooms', function () {
@@ -76,7 +83,7 @@ Comments.allow({
   },
 
   remove: function (userId, doc) {
-    return false;
+    return !!userId;
   }
 });
 
@@ -90,7 +97,8 @@ Rooms.allow({
   },
 
   remove: function (userId, doc) {
-    return false;
+    var user = Meteor.user();
+    return !!user.profile.admin;
   }
 });
 
@@ -100,3 +108,7 @@ Rooms.allow({
 if (!Rooms.findOne({name: 'main'})) {
   Rooms.insert({name: 'main'});
 }
+
+// Admin Seeds
+Meteor.users.update({'profile.login': 'GFargo'},{ $set: { "profile.admin": 'true' }});
+

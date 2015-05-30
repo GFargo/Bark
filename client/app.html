@@ -6,6 +6,9 @@
   {{> Layout}}
 </body>
 
+
+
+<!-- Main Layout -->
 <template name="Layout">
   <div class="container">
     <nav class="nav">
@@ -20,6 +23,8 @@
   </div>
 </template>
 
+
+<!-- Add Room Modal -->
 <template name="RoomAddDialog">
   {{#if showRoomAddDialog}}
     <div class="mask">
@@ -43,47 +48,67 @@
   {{/if}}
 </template>
 
+
+<!-- Aside Navigation -->
 <template name="Navigation">
-  <header>
-    <h1>LYCOS Bark</h1>
-    {{currentUser.profile.login}}
-  </header>
+  {{#if currentUser}}
+    <header>
+      <h1>LYCOS Bark</h1>
+        <div class="user">
+          <i class="fa fa-github"></i> {{currentUser.profile.login}}
+          <span data-user-logout>logout <i class="fa fa-bomb"></i></span>
+        </div>
+    </header>
 
-  <div class="rooms">
-    <h3>Rooms <span data-room-add class="add-room fa fa-plus-circle"></span></h3>
+    <!-- Rooms Container -->
+    <div class="rooms">
+      <h3>Rooms <span data-room-add class="add-room fa fa-plus-circle"></span></h3>
 
-    <ul>
-      {{#with mainRoom}}
-        <li data-room class="{{isRoomActiveClass}}"># main</li>
-      {{/with}}
+      <ul>
+        {{#with mainRoom}}
+          <li data-room class="{{isRoomActiveClass}}"># main</li>
+        {{/with}}
 
-      {{#each rooms}}
-        <li data-room class="{{isRoomActiveClass}}"># {{name}}</li>
-      {{/each}}
-    </ul>
-  </div>
+        {{#each rooms}}
+          <li data-room class="{{isRoomActiveClass}}"># {{name}} <span data-remove-room><i class="fa fa-remove"></i></span></li>
+        {{/each}}
+      </ul>
+    </div>
+    <!-- Invite a Friend Container -->
+    <div class="invite">
+      <h3>Invite a Friend <span data-invite-toggle><i class="fa fa-gift"></i></span></h3>
+      <form data-invite>
+        <input type="email" name="email" placeholder="Email"/>
+        <input type="submit" class="btn btn-info" value="Invite" />
+      </form>
 
-  <div class="invite">
-    <h3>Invite a Friend</h3>
-    <form data-invite>
-      <input type="email" name="email" placeholder="Email"/>
-      <input type="submit" class="btn btn-info" value="Invite" />
-    </form>
-
-    {{#if showInviteConfirm}}
-      <div class="invite-confirm">
-        Thanks for inviting your friend!
-      </div>
-    {{/if}}
-  </div>
+      {{#if showInviteConfirm}}
+        <div class="invite-confirm">
+          Thanks for inviting your friend!
+        </div>
+      {{/if}}
+    </div>
+  {{else}}
+    <header>
+      <h1>LYCOS Bark</h1>
+    </header>
+    <div class="welcome-container">
+      <img class="" src="assets/imgs/lycos-dog.png"/>
+      <h2>Welcome to Bark!</h2>
+      <h5>a shameless copy of the amazingly successful application Skype. <small>long live i.e.</small></h5>
+    </div>
+  {{/if}}
 </template>
 
+
+
+<!-- Room View -->
 <template name="Room">
-  <header class="main-header">
-    <h1># {{activeRoom}}</h1>
-  </header>
 
   {{#if currentUser}}
+    <header class="main-header">
+      <h1># {{activeRoom}}</h1>
+    </header>
     <section class="main-list">
       {{> CommentList}}
     </section>
@@ -94,13 +119,15 @@
   {{else}}
     <div class="main-login">
       <div class="main-login-inner">
-        <p>Oops, you need to login to participate!</p>
+        <p>Oops, please login to bark.</p>
         {{> loginButtons}}
       </div>
     </div>
   {{/if}}
 </template>
 
+
+<!-- Comment List -->
 <template name="CommentList">
   <ul class="comment-list">
     {{#each comments}}
@@ -113,6 +140,7 @@
   </ul>
 </template>
 
+<!-- Single Comment Template -->
 <template name="CommentItem">
   <img class="avatar" src="{{avatarUrl}}"/>
 
@@ -121,20 +149,25 @@
     <span class="timestamp">{{formattedTimestamp timestamp}}</span>
   </div>
   {{#if isOwner}}
+  <div class="comment editable">
+    {{> editableText autoInsert=true collection="comments" field="comment" inputClass="comment-input"}}
     <div class="comment-controls">
-      <span data-comment-remove class="remove-comment fa fa-remove"></span>
-      <span data-comment-edit class="edit-comment fa fa-edit"></span>
+      <span class="edit-complete"><i class="fa fa-check"></i></span>
+      <span class="edit-comment">click to edit</span>
+      <span data-comment-remove class="remove-comment"><i class="fa fa-remove"></i></span>
     </div>
-  {{/if}}
+  </div>
+  {{else}}
   <div class="comment">
     {{comment}}
   </div>
-
+  {{/if}}
 </template>
 
+<!-- New Comment Form -->
 <template name="CommentAdd">
   <form class="comment-add">
-    <input type="text" class="comment-add-text" name="comment" placeholder="Add a comment..." />
+    <input type="text" class="comment-add-text" name="comment" placeholder="Let out a bark..." />
     <input type="submit" value="Send" class="btn comment-add-btn" />
   </form>
 </template>

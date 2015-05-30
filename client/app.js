@@ -74,6 +74,7 @@ Template.CommentList.helpers({
 });
 
 Template.CommentItem.helpers({
+
   formattedTimestamp: function (timestamp) {
     return moment(timestamp).calendar();
   },
@@ -82,23 +83,39 @@ Template.CommentItem.helpers({
     var user = Meteor.users.findOne({'profile.login': comment.login});
     return !!user;
   },
-  avatarUrl: function () {
+
+  // Returns Github User Avatar
+  avatarUrl: function (_user) {
     var comment = this;
     var user = Meteor.users.findOne({'profile.login': comment.login});
-    return user.profile.avatarUrl;
-  },
+    if (user == undefined){
+      // fallback to placekitten avatar if not available
+      return 'https://placekitten.com/g/64/64';
+    } else {
+      return user.profile.avatarUrl;
+    }
 
-  deleteComment: function () {
-    //TODO - add functionality to remove comments
-  }
+  },
 });
 
 /*****************************************************************************/
 /* Template Events */
 /*****************************************************************************/
 Template.Navigation.events({
+  // user events
+  'click [data-user-logout]': function (e, tmpl) {
+    Meteor.logout(function () {
+      console.log('logged out');
+    });
+  },
+  // room events
   'click [data-room-add]': function (e, tmpl) {
     Session.set('showRoomAddDialog', true);
+  },
+
+  'click [data-remove-room]': function (e, tmpl) {
+    var room = this;
+    Rooms.remove(room._id);
   },
 
   'click [data-room]': function (e, tmpl) {
@@ -145,6 +162,22 @@ Template.RoomAddDialog.events({
     form.reset();
     Session.set('showRoomAddDialog', false);
   }
+});
+
+Template.CommentItem.events({
+
+  'click [data-comment-remove]': function (e, tmpl) {
+    var comment = this;
+    // var user = Meteor.users.findOne({'profile.login': comment.login});
+    Comments.remove(comment._id);
+  },
+
+  'click [data-comment-edit]': function  (e, tmpl) {
+    var comment = this;
+
+    // Session.set('isEditable', true);
+  }
+
 });
 
 Template.CommentAdd.events({
