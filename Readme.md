@@ -2,6 +2,15 @@
 
 An exploration into the Reactive Framework [Meteor.js](http://www.meteor.com).
 
+### Installation
+
+To get Lycos Bark up and running on your local machine you first need to install meteor:
+
+#####OSX/Linux#####
+
+`curl https://install.meteor.com/ | sh`
+
+then type `meteor` in terminal from within the project directory to boot up the local meteor server at `http://localhost:3000/`
 
 
 ####TODO:
@@ -16,5 +25,5 @@ An exploration into the Reactive Framework [Meteor.js](http://www.meteor.com).
 
 - [x] Edit Comments
 - [x] Delete Comments
-- [x] Add Sass Support
+- [x] Add Sass Support via `meteor-scss` [github](https://github.com/fourseven/meteor-scss)
 
