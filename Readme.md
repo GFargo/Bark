@@ -4,11 +4,17 @@ An exploration into the Reactive Framework [Meteor.js](http://www.meteor.com).
 
 
 
-TODO:
+####TODO:
 
-- [ ] Delete Comments
-- [ ] Edit Comments
-- [ ] Create `super user` field in `users` Mongo collection
+- [ ] Hide "invite a friend" form unless heading clicked
+  - Uses [editable text fields](http://editable-text.meteor.com/)/[github](https://github.com/jackadams/meteor-editable-text/)
+- [x] Add `admin` field to `user.profile` Mongo collection
   - [ ] Restrict creation of rooms to `super users`
   - [ ] Give `super users` ability to remove rooms
-- [ ] Hide "invite a friend" form unless heading clicked
+
+####DONE:
+
+- [x] Edit Comments
+- [x] Delete Comments
+- [x] Add Sass Support
+
