@@ -1,10 +1,10 @@
-# LYCOS Bark
+# Bark
 
 An exploration into the Reactive Framework [Meteor.js](http://www.meteor.com).
 
 ### Installation
 
-To get Lycos Bark up and running on your local machine you first need to install meteor:
+To get Bark up and running on your local machine you first need to install meteor:
 
 #####OSX/Linux#####
 
