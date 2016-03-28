@@ -1,6 +1,6 @@
 # Bark
 
-An exploration into the Reactive Framework [Meteor.js](http://www.meteor.com).
+An exploration into creating real-time chat applications using the [Meteor](http://www.meteor.com) platform.
 
 ### Installation
 
